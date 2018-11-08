@@ -16,23 +16,25 @@ export const getProjects = () => dispatch => {
     );
 };
 
-export const searchProjects = (value) => dispatch => {
+export const searchProjects = value => dispatch => {
   axios
     .get("https://sievo-react-assignment.azurewebsites.net/api/data")
     .then(res =>
       dispatch({
         type: SEARCH_PROJECTS_LIST,
         payload: res.data,
-        value:value,
+        value: value
       })
     );
 };
 
-export const sortProjects = () => (dispatch,getProjects) => {
-let items = getProjects().projects.projects;
-const sorted = items.sort((a,b)=>a['project']-b['project'])
-dispatch({
+export const sortProjects = () => (dispatch, getProjects) => {
+  let defaultProjects = getProjects().projects.projects;
+  const sortedProjects = defaultProjects.sort(
+    (a, b) => a["project"] - b["project"]
+  );
+  dispatch({
     type: SORT_PROJECTS_LIST,
-    payload: sorted
-  })
+    payload: sortedProjects
+  });
 };
