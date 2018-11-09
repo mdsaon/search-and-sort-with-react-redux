@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import {
   getProjects,
   searchProjects,
-  sortProjects
+  sortProjectsASC,
+  sortProjectsDESC
 } from "../../actions/projectsAction";
 import Moment from "react-moment";
 class Projects extends Component {
@@ -15,42 +16,54 @@ class Projects extends Component {
     const value = e.target.value;
     this.props.searchProjects(value);
   };
-  sortByProjectId = () => {
-    this.props.sortProjects();
+  sortByProjectIdASC = () => {
+    this.props.sortProjectsASC();
+  };
+  sortByProjectIdDESC = () => {
+    this.props.sortProjectsDESC();
   };
   render() {
     const { projects } = this.props.projects;
     const renderProjects = projects.map(project => (
       <div className="list-items">
         <div>{project.project}</div>
-        <div style={{width:300}}>{project.description}</div>
-          <div><Moment format="DD.MM.YYYY">{project["start date"]}</Moment></div>
+        <div style={{ width: 300 }}>{project.description}</div>
+        <div>
+          <Moment format="DD.MM.YYYY">{project["start date"]}</Moment>
+        </div>
         <div>{project.category}</div>
         <div>{project.responsible}</div>
-        <div style={{width:200}}>{project["savings amount"]}</div>
+        <div style={{ width: 200 }}>{project["savings amount"]}</div>
         <div>{project.currency !== "NULL" ? project.currency : ""}</div>
         <div>{project.complexity}</div>
       </div>
     ));
     return (
       <div className="projects-container">
-        <h1>Hello Projects</h1>
-        <form>
-          Search: <input type="text" onChange={this.searchHandler} />
-        </form>
-        <br />
-        <button onClick={this.sortByProjectId}>Sort</button>
-          <div className="list-items-heading">
-            <div>ID</div>
-            <div style={{width:300}}>Description</div>
-           <div>Start Date</div>
-           <div>Category</div>
-            <div>Responsible</div>
-            <div style={{width:200}}>Saving Amount</div>
-            <div>Currency</div>
-            <div>Complexity</div>
+        <div className="top-navigation-bar">
+          <h3 align="left">All Projects</h3>
+          <form>
+            <input
+              type="text"
+              onChange={this.searchHandler}
+              placeholder="Search by description..."
+            />
+          </form>
+        </div>
+        <div className="list-items-heading">
+          <div>
+            ID<i className="up" onClick={this.sortByProjectIdASC} />
+            <i className="down" onClick={this.sortByProjectIdDESC} />
           </div>
-          {renderProjects}
+          <div style={{ width: 300 }}>Description</div>
+          <div>Start Date</div>
+          <div>Category</div>
+          <div>Responsible</div>
+          <div style={{ width: 200 }}>Saving Amount</div>
+          <div>Currency</div>
+          <div>Complexity</div>
+        </div>
+        {renderProjects}
       </div>
     );
   }
@@ -58,7 +71,8 @@ class Projects extends Component {
 Projects.propTypes = {
   getProjects: PropTypes.func.isRequired,
   searchProjects: PropTypes.func.isRequired,
-  sortyProjects: PropTypes.func.isRequired,
+  sortProjectsASC: PropTypes.func.isRequired,
+  sortProjectsDESC: PropTypes.func.isRequired,
   projects: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -67,5 +81,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProjects, searchProjects, sortProjects }
+  { getProjects, searchProjects, sortProjectsASC, sortProjectsDESC }
 )(Projects);

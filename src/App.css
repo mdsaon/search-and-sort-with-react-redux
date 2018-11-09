@@ -1,45 +1,98 @@
-*{
+* {
   margin: 0 auto;
 }
 .App {
-  display:grid;
-  grid-template-areas: repeat(3,1fr);
+  display: grid;
+  grid-template-areas: repeat(4, 1fr);
+  width: 90%;
 }
 .projects-container {
+  background-color: #ededed;
   display: grid;
 }
-.list-items{
+.top-navigation-bar {
+  display: flex;
+  background-color: #333;
+  width: 100%;
+}
+.top-navigation-bar h3 {
+  color: bisque;
+  font-size: 2em;
+  text-align: left;
+}
+.top-navigation-bar input[type="text"] {
+  float: right;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+.list-items {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   font-size: 1em;
   text-align: left;
-  margin-bottom: 5px;
+  height: 80px;
+  margin: 5px;
+  background-color: lightblue;
 }
 
-.list-items div{
-  width: 130px;
-  font-family: "Lato","sans-serif";
+.list-items div {
+  width: 100px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-collapse: collapse;
-  background-color: #ededed;
-  color:black;
-
+  color: black;
+  border: 1px dashed;
+  border-left: 0;
+}
+.list-items div:last-child {
+  border-right: 0;
 }
 
-.list-items-heading{
+.list-items-heading {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   font-size: 1em;
   text-align: left;
-  font-family: "Lato","sans-serif";
+  font-family: "Lato", "sans-serif";
   height: 40px;
+  margin: 5px;
+  background-color: darkolivegreen;
 }
-.list-items-heading div{
-  width: 130px;
+.list-items-heading div {
+  width: 100px;
   border-collapse: collapse;
-  background-color: black;
-  color:bisque;
+  color: black;
+  border: 1px dashed;
+  border-left: 0;
+}
+.list-items-heading div:last-child {
+  border-right: 0;
+}
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  position: relative;
+  left: 50px;
+  cursor: pointer;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  position: relative;
+  left: 40px;
+  top: 15px;
+  cursor: pointer;
 }

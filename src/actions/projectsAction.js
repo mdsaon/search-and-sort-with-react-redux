@@ -28,10 +28,21 @@ export const searchProjects = value => dispatch => {
     );
 };
 
-export const sortProjects = () => (dispatch, getProjects) => {
+export const sortProjectsASC = () => (dispatch, getProjects) => {
   let defaultProjects = getProjects().projects.projects;
   const sortedProjects = defaultProjects.sort(
     (a, b) => a["project"] - b["project"]
+  );
+  dispatch({
+    type: SORT_PROJECTS_LIST,
+    payload: sortedProjects
+  });
+};
+
+export const sortProjectsDESC = () => (dispatch, getProjects) => {
+  let defaultProjects = getProjects().projects.projects;
+  const sortedProjects = defaultProjects.sort(
+    (a, b) => b["project"] - a["project"]
   );
   dispatch({
     type: SORT_PROJECTS_LIST,
