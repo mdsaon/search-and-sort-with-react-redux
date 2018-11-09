@@ -11,7 +11,7 @@ class Projects extends Component {
   componentDidMount() {
     this.props.getProjects();
   }
-  searchHandler = (e) => {
+  searchHandler = e => {
     const value = e.target.value;
     this.props.searchProjects(value);
   };
@@ -21,21 +21,16 @@ class Projects extends Component {
   render() {
     const { projects } = this.props.projects;
     const renderProjects = projects.map(project => (
-      <ul>
-        <li>
-          Id:{project.project}
-        </li>
-        <li>Description: {project.description}</li>
-        <li>
-          Start Date:
-          <Moment format="DD.MM.YYYY">{project["start date"]}</Moment>
-        </li>
-        <li>Category: {project.category}</li>
-        <li>Responsible: {project.responsible}</li>
-        <li>Saving Amount:{project["savings amount"]}</li>
-        <li>Currency: {project.currency !== "NULL" ? project.currency : ""}</li>
-        <li>Complexity:{project.complexity}</li>
-      </ul>
+      <div className="list-items">
+        <div>{project.project}</div>
+        <div>{project.description}</div>
+          <div><Moment format="DD.MM.YYYY">{project["start date"]}</Moment></div>
+        <div>{project.category}</div>
+        <div>{project.responsible}</div>
+        <div>{project["savings amount"]}</div>
+        <div>{project.currency !== "NULL" ? project.currency : ""}</div>
+        <div>{project.complexity}</div>
+      </div>
     ));
     return (
       <div className="projects-container">
@@ -45,7 +40,19 @@ class Projects extends Component {
         </form>
         <br />
         <button onClick={this.sortByProjectId}>Sort</button>
-        {renderProjects}
+        <div className="project-container__display">
+          <div className="list-items-heading">
+            <div>ID</div>
+            <div>Description</div>
+           <div>Start Date</div>
+           <div>Category</div>
+            <div>Responsible</div>
+           <div>Saving Amount</div>
+            <div>Currency</div>
+            <div>Complexity</div>
+          </div>
+          {renderProjects}
+        </div>
       </div>
     );
   }
