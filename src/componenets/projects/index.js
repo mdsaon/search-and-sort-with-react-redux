@@ -23,11 +23,11 @@ class Projects extends Component {
     const renderProjects = projects.map(project => (
       <div className="list-items">
         <div>{project.project}</div>
-        <div>{project.description}</div>
+        <div style={{width:300}}>{project.description}</div>
           <div><Moment format="DD.MM.YYYY">{project["start date"]}</Moment></div>
         <div>{project.category}</div>
         <div>{project.responsible}</div>
-        <div>{project["savings amount"]}</div>
+        <div style={{width:200}}>{project["savings amount"]}</div>
         <div>{project.currency !== "NULL" ? project.currency : ""}</div>
         <div>{project.complexity}</div>
       </div>
@@ -40,19 +40,17 @@ class Projects extends Component {
         </form>
         <br />
         <button onClick={this.sortByProjectId}>Sort</button>
-        <div className="project-container__display">
           <div className="list-items-heading">
             <div>ID</div>
-            <div>Description</div>
+            <div style={{width:300}}>Description</div>
            <div>Start Date</div>
            <div>Category</div>
             <div>Responsible</div>
-           <div>Saving Amount</div>
+            <div style={{width:200}}>Saving Amount</div>
             <div>Currency</div>
             <div>Complexity</div>
           </div>
           {renderProjects}
-        </div>
       </div>
     );
   }
