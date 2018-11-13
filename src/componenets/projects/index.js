@@ -9,9 +9,21 @@ import {
 } from "../../actions/projectsAction";
 import Moment from "react-moment";
 class Projects extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isToggleOn: true };
+  }
   componentDidMount() {
     this.props.getProjects();
   }
+  handleClick = () => {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+    this.state.isToggleOn
+      ? this.sortByProjectIdASC()
+      : this.sortByProjectIdDESC();
+  };
   searchHandler = e => {
     const value = e.target.value;
     this.props.searchProjects(value);
@@ -35,15 +47,14 @@ class Projects extends Component {
               placeholder="Search by description..."
             />
           </form>
+          <button onClick={this.handleClick}>
+            {this.state.isToggleOn ? "SORTBYIDASC" : "SORTBYIDDESC"}
+          </button>
         </div>
         <table>
           <thead>
             <tr>
-              <th scope="col">
-                Id
-                <i className="up" onClick={this.sortByProjectIdASC} />
-                <i className="down" onClick={this.sortByProjectIdDESC} />
-              </th>
+              <th scope="col">Id</th>
               <th scope="col">Description</th>
               <th scope="col">Start Date</th>
               <th scope="col">Category</th>
