@@ -24,6 +24,20 @@ class Projects extends Component {
   };
   render() {
     const { projects } = this.props.projects;
+    const renderProjects = projects.map(project => (
+      <div className="list-items">
+        <div>{project.project}</div>
+        <div style={{ width: 300 }}>{project.description}</div>
+        <div>
+          <Moment format="DD.MM.YYYY">{project["start date"]}</Moment>
+        </div>
+        <div>{project.category}</div>
+        <div>{project.responsible}</div>
+        <div style={{ width: 200 }}>{project["savings amount"]}</div>
+        <div>{project.currency !== "NULL" ? project.currency : ""}</div>
+        <div>{project.complexity}</div>
+      </div>
+    ));
     return (
       <div className="projects-container">
         <div className="top-navigation-bar">
@@ -36,42 +50,20 @@ class Projects extends Component {
             />
           </form>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">
-                Id
-                <i className="up" onClick={this.sortByProjectIdASC} />
-                <i className="down" onClick={this.sortByProjectIdDESC} />
-              </th>
-              <th scope="col">Description</th>
-              <th scope="col">Start Date</th>
-              <th scope="col">Category</th>
-              <th scope="col">Responsible</th>
-              <th scope="col">Savings Amount</th>
-              <th scope="col">Currency</th>
-              <th scope="col">Complexity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {projects.map(project => (
-              <tr>
-                <td data-label="Id">{project.project}</td>
-                <td data-label="Description">{project.description}</td>
-                <td data-label="Start Date">
-                  <Moment format="DD.MM.YYYY">{project["start date"]}</Moment>
-                </td>
-                <td data-label="Category">{project.category}</td>
-                <td data-label="Responsible">{project.responsible}</td>
-                <td data-label="Savings Amount">{project["savings amount"]}</td>
-                <td data-label="Currency">
-                  {project.currency !== "NULL" ? project.currency : ""}
-                </td>
-                <td data-label="Complexity">{project.complexity}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="list-items-heading">
+          <div>
+            ID<i className="up" onClick={this.sortByProjectIdASC} />
+            <i className="down" onClick={this.sortByProjectIdDESC} />
+          </div>
+          <div style={{ width: 300 }}>Description</div>
+          <div>Start Date</div>
+          <div>Category</div>
+          <div>Responsible</div>
+          <div style={{ width: 200 }}>Saving Amount</div>
+          <div>Currency</div>
+          <div>Complexity</div>
+        </div>
+        {renderProjects}
       </div>
     );
   }
