@@ -17,19 +17,19 @@ describe("Projects Reducer", () => {
     const action = {};
     expect(projectsReducer(state, action)).toBe(state);
   });
-  it("Should return the modified state after dispatching the FETCH_PROJECTS_LISt" , () => {
+  it("Should return the modified state after dispatching the FETCH_PROJECTS_LIST" , () => {
     const prevState = { projects:[]};
     const action = {type:FETCH_PROJECTS_LIST,payload:[]};
     const state = projectsReducer(prevState,action);
     expect(state.projects).toBe(action.payload);
   });
-  it("Should return the modified state after dispatching the SEARCH_PROJECTS_LISt" , () => {
+  it("Should return the modified state after dispatching the SEARCH_PROJECTS_LIST" , () => {
     const prevState = { projects:[]};
-    const action = {type:SEARCH_PROJECTS_LIST,payload:[],value:[]};
+    const action = {type:SEARCH_PROJECTS_LIST,payload:[{description: 'foo'}],value:'foo'};
     const state = projectsReducer(prevState,action);
-    expect(state.projects).toBe(action.payload);
+    expect(state.projects).toEqual([]);
   });
-  it("Should return the modified state after dispatching the SORT_PROJECTS_LISt" , () => {
+  it("Should return the modified state after dispatching the SORT_PROJECTS_LIST" , () => {
     const prevState = { projects:[]};
     const action = {type:SORT_PROJECTS_LIST,payload:[]};
     const state = projectsReducer(prevState,action);
