@@ -9,10 +9,7 @@ import {
 } from "../../actions/projectsAction";
 import Moment from "react-moment";
 class Projects extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isToggleOn: true };
-  }
+  state = { isToggleOn: true };
   componentDidMount() {
     this.props.getProjects();
   }
@@ -39,7 +36,7 @@ class Projects extends Component {
     return (
       <div className="projects-container">
         <div className="top-navigation-bar">
-          <h3 align="left">All Projects</h3>
+          <h3 align="left">Projects Lists</h3>
           <form>
             <input
               type="text"
@@ -48,7 +45,7 @@ class Projects extends Component {
             />
           </form>
           <button onClick={this.handleClick}>
-            {this.state.isToggleOn ? "SORTBYIDASC" : "SORTBYIDDESC"}
+            {this.state.isToggleOn ? "SORTBYIDASC>>>" : "SORTBYIDDESC<<<"}
           </button>
         </div>
         <table>
