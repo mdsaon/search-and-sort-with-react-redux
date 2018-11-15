@@ -13,6 +13,12 @@ class Projects extends Component {
   componentDidMount() {
     this.props.getProjects();
   }
+  //Searching Function
+  searchHandler = e => {
+    const value = e.target.value;
+    this.props.searchProjects(value);
+  };
+  //Button Toggling with Sorting
   handleClick = () => {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
@@ -21,13 +27,11 @@ class Projects extends Component {
       ? this.sortByProjectIdASC()
       : this.sortByProjectIdDESC();
   };
-  searchHandler = e => {
-    const value = e.target.value;
-    this.props.searchProjects(value);
-  };
+  //Sort by Ascending
   sortByProjectIdASC = () => {
     this.props.sortProjectsASC();
   };
+  //Sorty by Descending
   sortByProjectIdDESC = () => {
     this.props.sortProjectsDESC();
   };
