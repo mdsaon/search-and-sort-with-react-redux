@@ -15,7 +15,7 @@ class Projects extends Component {
   }
   //Searching Function
   searchHandler = e => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     this.props.searchProjects(value);
   };
   //Button Toggling with Sorting

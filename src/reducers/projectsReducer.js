@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
         return {
           ...state,
           projects: state.projects.filter(
-            project => project.description.indexOf(action.value) !== -1
+            project => project.description.toLowerCase().indexOf(action.value.toLowerCase()) !== -1
           )
         };
       } else {
